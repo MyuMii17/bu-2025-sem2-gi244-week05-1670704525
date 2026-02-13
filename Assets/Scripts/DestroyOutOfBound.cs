@@ -1,10 +1,13 @@
+using System;
 using UnityEngine;
-
 public class DestroyOutOfBound : MonoBehaviour
 {
     // [1] declare a private float variable to store the top bound
     private float topBound = 30;
     private float lowerBound = -10;
+    private Wave wave;
+    public static Action OnEnemyDead;
+
 
     // Update is called once per frame
     void Update()
@@ -17,6 +20,7 @@ public class DestroyOutOfBound : MonoBehaviour
         }
         else if (transform.position.z < lowerBound)
         {
+            OnEnemyDead?.Invoke();
             Destroy(gameObject);
         }
     }
